@@ -13,4 +13,8 @@ buildNumber.properties
 .classpath
 .project
 .gitignore
+<<<<<<< HEAD
 .settings/
+=======
+.settings/
+>>>>>>> fbf2e7e2cb508d38551dc4e83f2750aff509358e
