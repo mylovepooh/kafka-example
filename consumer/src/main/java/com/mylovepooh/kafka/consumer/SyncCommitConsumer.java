@@ -9,7 +9,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
-public class SimpleConsumer {
+public class SyncCommitConsumer {
 	private static String TOPIC_NAME = "test";
 	private static String BOOTSTRAP_SERVERS = "192.168.75.184:9092,192.168.75.185:9092,192.168.75.186:9092";
 	private static String CONSUMER_GROUP = "TestGroupA";
@@ -23,6 +23,7 @@ public class SimpleConsumer {
 		properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
 				"org.apache.kafka.common.serialization.StringDeserializer");
 		properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+		properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
 
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
 
@@ -34,6 +35,7 @@ public class SimpleConsumer {
 				for (ConsumerRecord<String, String> record : records) {
 					System.out.println(record.value());
 				}
+				consumer.commitSync();
 			}
 		} catch (Exception exception) {
 			System.out.println(exception);
