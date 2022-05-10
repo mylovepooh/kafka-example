@@ -1,4 +1,4 @@
-package com.mylovepooh.kafka.producer;
+package com.mylovepooh.kafka.consumer;
 
 import static org.junit.Assert.*;
 
